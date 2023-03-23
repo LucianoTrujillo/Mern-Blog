@@ -75,8 +75,8 @@ $ npm start (to start the backend)
 ### Build docker images of node backend and react frontend:
 ```
 # --- standing in the root directory of cloned repository
-$ docker build -t blog-backend Backend/
-$ docker build -t blog-frontend Frontend/
+$ docker build -t okteto.dev/blog-backend Backend/
+$ docker build -t okteto.dev/blog-frontend Frontend/
 ```
 
 ### Make images available from the cluster
@@ -128,6 +128,13 @@ That's it! To try it out, you can visit the frontend at:
 ```
 $ minikube service --url blog-frontend
 ```
+
+### Monitor cluster
+```
+$ minikube dashboard
+```
+
+
 ##  Key Features
 
 - User registration and login

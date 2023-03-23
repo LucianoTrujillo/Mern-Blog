@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: blog-frontend
-        image: blog-frontend:latest
+        image: okteto.dev/blog-frontend:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 3000

@@ -1,0 +1,43 @@
+name: Mern-Blog
+
+build:
+  blog-frontend:
+    context: ./Frontend
+    dockerfile: dev.Dockerfile
+
+deploy:
+  - kubectl apply -f kubernetes
+
+dev:
+  blog-backend:
+    selector:
+      app: blog-backend
+    command: bash
+    workdir: /app
+    sync:
+      - .:/app
+    forward:
+      - 9229:9229
+      - 5000:5000
+  blog-frontend:
+    image: ${OKTETO_BUILD_BLOG_FRONTEND_IMAGE}
+    command: npm start
+    selector:
+      app: blog-frontend
+    workdir: /usr/src/app
+    sync:
+      - Frontend/src:/usr/src/app/src
+    forward:
+      - 9229:9229
+      - 3000:3000
+  mongo:
+    selector:
+      app: mongo
+    command: bash
+    workdir: /usr/src/app
+    sync:
+      - .:/usr/src/app
+    forward:
+      - 9229:9229
+      - 27017:27017
+
